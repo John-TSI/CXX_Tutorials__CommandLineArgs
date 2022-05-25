@@ -65,21 +65,21 @@ void WriteFile(string file_name, string output)
 template<typename K, typename V>
 void ExecuteMapCommands(std::unordered_map<K, V>& m)
 {
-    for (auto& pair : m)
+    for (auto& [key,val] : m)
     {
-        if(pair.first == "-read")
+        if(key == "-read")
         {
-            (pair.second == "") 
+            (val == "") 
             ? std::cout << "Invalid -read command: filename not provided." 
-            : ReadFile(pair.second);
+            : ReadFile(val);
         }
-        else if(pair.first == "-write")
+        else if(key == "-write")
         {
-            (pair.second == "") 
+            (val == "") 
             ? std::cout << "Invalid -write command: filename not provided."
-            : WriteFile(pair.second, m["-text"]);
+            : WriteFile(val, m["-text"]);
         }
-        else if(pair.first != "-text")
+        else if(key != "-text")
         {
             std::cout << "Invalid command line argument supplied.";
         }
