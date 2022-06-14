@@ -69,15 +69,13 @@ void ExecuteMapCommands(std::unordered_map<K, V>& m)
     {
         if(key == "-read")
         {
-            (val == "") 
-            ? std::cout << "Invalid -read command: filename not provided." 
-            : ReadFile(val);
+            if(val == ""){ std::cout << "Invalid -read command: filename not provided."; }
+            else{ ReadFile(val); }
         }
         else if(key == "-write")
         {
-            (val == "") 
-            ? std::cout << "Invalid -write command: filename not provided."
-            : WriteFile(val, m["-text"]);
+            if(val == ""){ std::cout << "Invalid -write command: filename not provided."; }
+            else{ WriteFile(val, m["-text"]); }
         }
         else if(key != "-text")
         {
